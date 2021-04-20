@@ -27,7 +27,7 @@ public class ModelController : MonoBehaviour, MainControl.IModelActions
     {
         if (!isDragging) return;
         
-        model.Rotate(Vector3.down, dragDelta.x, Space.World);
+        model.Rotate(Vector3.down, dragDelta.x, Space.Self);
         model.Rotate(Vector3.right, dragDelta.y, Space.World);
     }
 
