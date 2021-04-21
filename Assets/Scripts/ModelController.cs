@@ -6,11 +6,12 @@ using UnityEngine.InputSystem;
 
 public class ModelController : MonoBehaviour, MainControl.IModelActions
 {
-    [SerializeField] private Transform model = null;
+    [SerializeField] private Transform model;
+    [SerializeField] private float speed = 1f;
     
     private MainControl _control;
-    private Vector2 dragDelta = Vector2.zero;
-    private bool isDragging = false;
+    private Vector2 _dragDelta = Vector2.zero;
+    private bool _isDragging = false;
     
     private void Awake()
     {
@@ -25,26 +26,26 @@ public class ModelController : MonoBehaviour, MainControl.IModelActions
 
     private void Update()
     {
-        if (!isDragging) return;
+        if (!_isDragging) return;
         
-        model.Rotate(Vector3.down, dragDelta.x, Space.Self);
-        model.Rotate(Vector3.right, dragDelta.y, Space.World);
+        model.Rotate(Vector3.down, _dragDelta.x * speed, Space.Self);
+        model.Rotate(Vector3.right, _dragDelta.y * speed, Space.World);
     }
 
     public void OnDragDelta(InputAction.CallbackContext context)
     {
-        dragDelta = context.ReadValue<Vector2>();
+        _dragDelta = context.ReadValue<Vector2>();
     }
 
     public void OnDrag(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            isDragging = true;
+            _isDragging = true;
         }
         else if (context.canceled)
         {
-            isDragging = false;
+            _isDragging = false;
         }
     }
 }
