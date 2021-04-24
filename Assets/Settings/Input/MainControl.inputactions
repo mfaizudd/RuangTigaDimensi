@@ -20,14 +20,6 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
-                },
-                {
-                    "name": "Handle",
-                    "type": "Value",
-                    "id": "f3641a26-44d8-477a-b6c8-3c31e6c2ca07",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -72,28 +64,6 @@
                     "processors": "",
                     "groups": "Touchscreen",
                     "action": "Drag",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c282d6e0-40ea-4ff2-ab74-ecfc368c013f",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard & mouse",
-                    "action": "Handle",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "44973e22-6c6a-4d8e-b6b2-6991210dc264",
-                    "path": "<Touchscreen>/primaryTouch/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Touchscreen",
-                    "action": "Handle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,9 +8,9 @@ public class ModelController : MonoBehaviour, MainControl.IModelActions
     
     private MainControl _control;
     private Vector2 _dragDelta = Vector2.zero;
-    private bool _isDragging = false;
-    private bool _isHandling = false;
-    
+    private bool _isDragging;
+
+
     private void Awake()
     {
         _control = new MainControl();
@@ -48,10 +45,5 @@ public class ModelController : MonoBehaviour, MainControl.IModelActions
         {
             _isDragging = false;
         }
-    }
-
-    public void OnHandle(InputAction.CallbackContext context)
-    {
-        
     }
 }
