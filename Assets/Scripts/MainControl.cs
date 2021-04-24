@@ -33,6 +33,14 @@ public class @MainControl : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Handle"",
+                    ""type"": ""Value"",
+                    ""id"": ""f3641a26-44d8-477a-b6c8-3c31e6c2ca07"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -79,6 +87,28 @@ public class @MainControl : IInputActionCollection, IDisposable
                     ""action"": ""Drag"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c282d6e0-40ea-4ff2-ab74-ecfc368c013f"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & mouse"",
+                    ""action"": ""Handle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""44973e22-6c6a-4d8e-b6b2-6991210dc264"",
+                    ""path"": ""<Touchscreen>/primaryTouch/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Touchscreen"",
+                    ""action"": ""Handle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -117,6 +147,7 @@ public class @MainControl : IInputActionCollection, IDisposable
         m_Model = asset.FindActionMap("Model", throwIfNotFound: true);
         m_Model_DragDelta = m_Model.FindAction("DragDelta", throwIfNotFound: true);
         m_Model_Drag = m_Model.FindAction("Drag", throwIfNotFound: true);
+        m_Model_Handle = m_Model.FindAction("Handle", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -168,12 +199,14 @@ public class @MainControl : IInputActionCollection, IDisposable
     private IModelActions m_ModelActionsCallbackInterface;
     private readonly InputAction m_Model_DragDelta;
     private readonly InputAction m_Model_Drag;
+    private readonly InputAction m_Model_Handle;
     public struct ModelActions
     {
         private @MainControl m_Wrapper;
         public ModelActions(@MainControl wrapper) { m_Wrapper = wrapper; }
         public InputAction @DragDelta => m_Wrapper.m_Model_DragDelta;
         public InputAction @Drag => m_Wrapper.m_Model_Drag;
+        public InputAction @Handle => m_Wrapper.m_Model_Handle;
         public InputActionMap Get() { return m_Wrapper.m_Model; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -189,6 +222,9 @@ public class @MainControl : IInputActionCollection, IDisposable
                 @Drag.started -= m_Wrapper.m_ModelActionsCallbackInterface.OnDrag;
                 @Drag.performed -= m_Wrapper.m_ModelActionsCallbackInterface.OnDrag;
                 @Drag.canceled -= m_Wrapper.m_ModelActionsCallbackInterface.OnDrag;
+                @Handle.started -= m_Wrapper.m_ModelActionsCallbackInterface.OnHandle;
+                @Handle.performed -= m_Wrapper.m_ModelActionsCallbackInterface.OnHandle;
+                @Handle.canceled -= m_Wrapper.m_ModelActionsCallbackInterface.OnHandle;
             }
             m_Wrapper.m_ModelActionsCallbackInterface = instance;
             if (instance != null)
@@ -199,6 +235,9 @@ public class @MainControl : IInputActionCollection, IDisposable
                 @Drag.started += instance.OnDrag;
                 @Drag.performed += instance.OnDrag;
                 @Drag.canceled += instance.OnDrag;
+                @Handle.started += instance.OnHandle;
+                @Handle.performed += instance.OnHandle;
+                @Handle.canceled += instance.OnHandle;
             }
         }
     }
@@ -225,5 +264,6 @@ public class @MainControl : IInputActionCollection, IDisposable
     {
         void OnDragDelta(InputAction.CallbackContext context);
         void OnDrag(InputAction.CallbackContext context);
+        void OnHandle(InputAction.CallbackContext context);
     }
 }

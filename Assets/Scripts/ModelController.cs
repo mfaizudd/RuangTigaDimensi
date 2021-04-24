@@ -12,6 +12,7 @@ public class ModelController : MonoBehaviour, MainControl.IModelActions
     private MainControl _control;
     private Vector2 _dragDelta = Vector2.zero;
     private bool _isDragging = false;
+    private bool _isHandling = false;
     
     private void Awake()
     {
@@ -47,5 +48,10 @@ public class ModelController : MonoBehaviour, MainControl.IModelActions
         {
             _isDragging = false;
         }
+    }
+
+    public void OnHandle(InputAction.CallbackContext context)
+    {
+        
     }
 }
