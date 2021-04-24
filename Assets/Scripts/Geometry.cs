@@ -6,8 +6,11 @@ using UnityEngine.Serialization;
 
 public class Geometry : MonoBehaviour
 {
+    [SerializeField] private GameObject model;
+    [SerializeField] private GameObject modelFrame;
     [SerializeField] private Transform[] vertices;
     [SerializeField] private VertexText vertexText;
+    
 
     private void Awake()
     {
@@ -17,5 +20,11 @@ public class Geometry : MonoBehaviour
             textInstance.SetText(vertex.name);
             textInstance.FollowTarget = vertex;
         }
+    }
+
+    public void SetFrameVisibility(bool frameVisible)
+    {
+        model.SetActive(!frameVisible);
+        modelFrame.SetActive(frameVisible);
     }
 }
