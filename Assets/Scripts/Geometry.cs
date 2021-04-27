@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -26,5 +28,22 @@ public class Geometry : MonoBehaviour
     {
         model.SetActive(!frameVisible);
         modelFrame.SetActive(frameVisible);
+    }
+
+    public void ResetRotation()
+    {
+        StartCoroutine(RotateTo(Quaternion.identity));
+    }
+
+    private IEnumerator RotateTo(Quaternion target)
+    {
+        const float transitionTime = 1f;
+        var t = 0f;
+        while (t < 1)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, target, t);
+            t += Time.deltaTime / transitionTime;
+            yield return null;
+        }
     }
 }

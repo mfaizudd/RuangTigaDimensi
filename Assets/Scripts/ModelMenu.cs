@@ -7,6 +7,7 @@ public class ModelMenu : MonoBehaviour
     [Header("UI Space")] 
     [SerializeField] private Toggle wireframeToggle;
     [SerializeField] private Toggle perspectiveToggle;
+    [SerializeField] private Button resetRotationButton;
 
     [Header("World Space")] 
     [SerializeField] private Camera mainCamera;
@@ -16,6 +17,7 @@ public class ModelMenu : MonoBehaviour
     {
         wireframeToggle.onValueChanged.AddListener(OnWireframeToggled);
         perspectiveToggle.onValueChanged.AddListener(OnPerspectiveToggled);
+        resetRotationButton.onClick.AddListener(OnResetRotationClicked);
     }
 
     private void OnWireframeToggled(bool value)
@@ -26,5 +28,10 @@ public class ModelMenu : MonoBehaviour
     private void OnPerspectiveToggled(bool value)
     {
         mainCamera.orthographic = value;
+    }
+
+    private void OnResetRotationClicked()
+    {
+        geometry.ResetRotation();
     }
 }
