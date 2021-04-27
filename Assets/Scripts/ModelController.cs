@@ -3,13 +3,12 @@ using UnityEngine.InputSystem;
 
 public class ModelController : MonoBehaviour, MainControl.IModelActions
 {
-    [SerializeField] private Transform model;
+    [SerializeField] private Geometry model;
     [SerializeField] private float speed = 1f;
     
     private MainControl _control;
     private Vector2 _dragDelta = Vector2.zero;
     private bool _isDragging;
-
 
     private void Awake()
     {
@@ -26,8 +25,9 @@ public class ModelController : MonoBehaviour, MainControl.IModelActions
     {
         if (!_isDragging) return;
         
-        model.Rotate(Vector3.down, _dragDelta.x * speed, Space.Self);
-        model.Rotate(Vector3.right, _dragDelta.y * speed, Space.World);
+        model.StopAllCoroutines();
+        model.transform.Rotate(Vector3.down, _dragDelta.x * speed, Space.Self);
+        model.transform.Rotate(Vector3.right, _dragDelta.y * speed, Space.World);
     }
 
     public void OnDragDelta(InputAction.CallbackContext context)

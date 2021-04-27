@@ -443,6 +443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wireframeToggle: {fileID: 791785973}
   perspectiveToggle: {fileID: 999796072}
+  resetRotationButton: {fileID: 1912886173}
   mainCamera: {fileID: 1308954960}
   geometry: {fileID: 543930123}
 --- !u!1 &784695198
@@ -1058,11 +1059,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1164437137 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 15416450800501200, guid: 0e8349ce8f13874af83ff403526dd576, type: 3}
-  m_PrefabInstance: {fileID: 15416451927025473}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1184879662
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,7 +1118,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1184879662}
-  m_LocalRotation: {x: -3e-45, y: -1e-45, z: -0, w: 1}
+  m_LocalRotation: {x: 1e-45, y: -1e-45, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1208,7 +1204,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1308954958}
-  m_LocalRotation: {x: -3e-45, y: -1e-45, z: 0, w: 1}
+  m_LocalRotation: {x: 1e-45, y: -1e-45, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1519,6 +1515,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8462376957888584676, guid: b1ea844fdf20ada93b98a8dc2fc65f92, type: 3}
   m_PrefabInstance: {fileID: 8462376955975698552}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1912886173 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1369617722591550, guid: b1ea844fdf20ada93b98a8dc2fc65f92, type: 3}
+  m_PrefabInstance: {fileID: 8462376955975698552}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2143518588
 GameObject:
   m_ObjectHideFlags: 0
@@ -1685,7 +1692,7 @@ PrefabInstance:
     - target: {fileID: 1030123606925117949, guid: b442c5adb1d341c88bc51021f20c9905, type: 3}
       propertyPath: model
       value: 
-      objectReference: {fileID: 1164437137}
+      objectReference: {fileID: 543930123}
     - target: {fileID: 1030123606925117949, guid: b442c5adb1d341c88bc51021f20c9905, type: 3}
       propertyPath: speed
       value: 0.25
