@@ -6,7 +6,7 @@ public class VertexText : MonoBehaviour
     [SerializeField] private float gap = 1f;
 
     private bool _isFollowTargetNull;
-    private TextMeshPro _textMesh;
+    private TextMeshProUGUI _textMesh;
     private Transform _followTarget;
 
     public Transform FollowTarget

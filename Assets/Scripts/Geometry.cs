@@ -12,13 +12,17 @@ public class Geometry : MonoBehaviour
     [SerializeField] private GameObject modelFrame;
     [SerializeField] private Transform[] vertices;
     [SerializeField] private VertexText vertexText;
+    [SerializeField] private Transform worldCanvas;
     
 
     private void Awake()
     {
         foreach (var vertex in vertices)
         {
-            var textInstance = Instantiate(vertexText, vertex.position, Quaternion.identity);
+            var textInstance = Instantiate(vertexText, worldCanvas);
+            var textTransform = textInstance.transform;
+            textTransform.position = vertex.position;
+            textTransform.rotation = Quaternion.identity;
             textInstance.SetText(vertex.name);
             textInstance.FollowTarget = vertex;
         }
