@@ -1,13 +1,15 @@
 using System;
+using EnsignBandeng.UI;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ModelMenu : MonoBehaviour
 {
     [Header("UI Space")] 
-    [SerializeField] private Toggle wireframeToggle;
-    [SerializeField] private Toggle perspectiveToggle;
-    [SerializeField] private Button resetRotationButton;
+    [SerializeField] private EToggle wireframeToggle;
+    [SerializeField] private EToggle perspectiveToggle;
+    [SerializeField] private EButton resetRotationButton;
 
     [Header("World Space")] 
     [SerializeField] private Camera mainCamera;

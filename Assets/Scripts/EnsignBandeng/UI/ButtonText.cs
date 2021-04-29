@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,10 +9,19 @@ namespace EnsignBandeng.UI
     [RequireComponent(typeof(Button))]
     public class ButtonText : MonoBehaviour
     {
+        public Button Button => _button;
+        
         [SerializeField] private string text;
         [SerializeField] private TextMeshProUGUI textMesh;
         [SerializeField] private float fontSize = 22;
         [SerializeField] private bool renameObject = true;
+
+        private Button _button;
+
+        private void Awake()
+        {
+            TryGetComponent(out _button);
+        }
 
         protected void Reset()
         {
