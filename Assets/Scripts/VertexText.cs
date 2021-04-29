@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class VertexText : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI textMesh;
     [SerializeField] private float gap = 1f;
 
     private bool _isFollowTargetNull;
-    private TextMeshProUGUI _textMesh;
     private Transform _followTarget;
 
     public Transform FollowTarget
@@ -22,7 +22,6 @@ public class VertexText : MonoBehaviour
     private void Awake()
     {
         _isFollowTargetNull = FollowTarget == null;
-        TryGetComponent(out _textMesh);
     }
 
     private void Update()
@@ -38,6 +37,6 @@ public class VertexText : MonoBehaviour
 
     public void SetText(string text)
     {
-        _textMesh.text = text;
+        textMesh.text = text;
     }
 }
