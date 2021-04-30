@@ -13,13 +13,15 @@ public class Geometry : MonoBehaviour
     [SerializeField] private Transform[] vertices;
     [SerializeField] private VertexText vertexText;
     [SerializeField] private Transform worldCanvas;
+    [SerializeField] private bool instantiateCanvas;
     
 
     private void Awake()
     {
         foreach (var vertex in vertices)
         {
-            var textInstance = Instantiate(vertexText, worldCanvas);
+            var canvasInstance = Instantiate(worldCanvas, Vector3.zero, Quaternion.identity);
+            var textInstance = Instantiate(vertexText, canvasInstance);
             var textTransform = textInstance.transform;
             textTransform.position = vertex.position;
             textTransform.rotation = Quaternion.identity;
