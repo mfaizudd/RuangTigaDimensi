@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System;
 using UnityEditor;
 using UnityEngine;
@@ -7,7 +8,7 @@ namespace EnsignBandeng.Editor
     public class ExtendedEditor<T> : UnityEditor.Editor where T : UnityEngine.Object
     {
         protected T Target => target as T;
-        protected SerializedProperty GetProperty(string name) => serializedObject.FindProperty(name);
+        private SerializedProperty GetProperty(string name) => serializedObject.FindProperty(name);
 
         protected void PrefixLabel(string label)
         {
@@ -45,3 +46,4 @@ namespace EnsignBandeng.Editor
         }
     }
 }
+#endif

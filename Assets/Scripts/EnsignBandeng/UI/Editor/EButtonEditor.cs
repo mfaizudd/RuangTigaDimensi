@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using EnsignBandeng.Editor;
 using UnityEditor;
 using UnityEditor.UI;
@@ -32,3 +33,4 @@ namespace EnsignBandeng.UI.Editor
         }
     }
 }
+#endif

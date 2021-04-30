@@ -1,10 +1,15 @@
+using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class VertexText : MonoBehaviour
 {
+    public event Action<VertexText> VertexClick;
+    
     [SerializeField] private TextMeshProUGUI textMesh;
     [SerializeField] private float gap = 1f;
+    [SerializeField] private Button vertexButton;
 
     private bool _isFollowTargetNull;
     private Transform _followTarget;
@@ -22,6 +27,12 @@ public class VertexText : MonoBehaviour
     private void Awake()
     {
         _isFollowTargetNull = FollowTarget == null;
+        vertexButton.onClick.AddListener(OnVertexClick);
+    }
+
+    private void OnVertexClick()
+    {
+        VertexClick?.Invoke(this);
     }
 
     private void Update()

@@ -11,23 +11,35 @@ public class Geometry : MonoBehaviour
     [SerializeField] private GameObject model;
     [SerializeField] private GameObject modelFrame;
     [SerializeField] private Transform[] vertices;
+    [SerializeField] private Transform[] edges;
+    [SerializeField] private Transform[] faces;
     [SerializeField] private VertexText vertexText;
     [SerializeField] private Transform worldCanvas;
     [SerializeField] private bool instantiateCanvas;
-    
+
+    private List<VertexText> _vertexInstances;
 
     private void Awake()
     {
+        _vertexInstances = new List<VertexText>(vertices.Length);
         foreach (var vertex in vertices)
         {
-            var canvasInstance = Instantiate(worldCanvas, Vector3.zero, Quaternion.identity);
+            var canvasInstance = instantiateCanvas ? Instantiate(worldCanvas, Vector3.zero, Quaternion.identity) : worldCanvas;
             var textInstance = Instantiate(vertexText, canvasInstance);
             var textTransform = textInstance.transform;
             textTransform.position = vertex.position;
             textTransform.rotation = Quaternion.identity;
             textInstance.SetText(vertex.name);
             textInstance.FollowTarget = vertex;
+            textInstance.VertexClick += OnVertexClick;
+            _vertexInstances.Add(textInstance);
         }
+    }
+
+    private void OnVertexClick(VertexText vertex)
+    {
+        var index = _vertexInstances.IndexOf(vertex);
+        
     }
 
     public void SetFrameVisibility(bool frameVisible)

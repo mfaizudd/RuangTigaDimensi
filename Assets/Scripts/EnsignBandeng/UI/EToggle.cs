@@ -39,6 +39,7 @@ namespace EnsignBandeng.UI
             Text = value ? alternateText : _defaultText;
         }
 
+        #if UNITY_EDITOR
         protected override void OnValidate()
         {
             if (renameObject)
@@ -55,5 +56,6 @@ namespace EnsignBandeng.UI
             base.Reset();
             textMesh = GetComponentInChildren<TextMeshProUGUI>();
         }
+        #endif
     }
 }

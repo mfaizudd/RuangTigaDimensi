@@ -23,6 +23,7 @@ namespace EnsignBandeng.UI
         [SerializeField] private float fontSize = 22;
         [SerializeField] private bool renameObject = false;
         
+        #if UNITY_EDITOR
         protected override void OnValidate()
         {
             if (renameObject)
@@ -39,5 +40,6 @@ namespace EnsignBandeng.UI
             base.Reset();
             textMesh = GetComponentInChildren<TextMeshProUGUI>();
         }
+        #endif
     }
 }
