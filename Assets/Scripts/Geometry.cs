@@ -18,11 +18,20 @@ public class Geometry : MonoBehaviour
     [SerializeField] private bool instantiateCanvas;
 
     private List<VertexText> _vertexInstances;
+    private List<VertexText> _edgeInstances;
+    private List<VertexText> _faceInstances;
 
     private void Awake()
     {
-        _vertexInstances = new List<VertexText>(vertices.Length);
-        foreach (var vertex in vertices)
+        _vertexInstances = InitializePoints(vertices);
+        _edgeInstances = InitializePoints(edges);
+        _faceInstances = InitializePoints(faces);
+    }
+
+    private List<VertexText> InitializePoints(IReadOnlyCollection<Transform> points)
+    {
+        var pointInstances = new List<VertexText>(points.Count);
+        foreach (var vertex in points)
         {
             var canvasInstance = instantiateCanvas ? Instantiate(worldCanvas, Vector3.zero, Quaternion.identity) : worldCanvas;
             var textInstance = Instantiate(vertexText, canvasInstance);
@@ -32,8 +41,9 @@ public class Geometry : MonoBehaviour
             textInstance.SetText(vertex.name);
             textInstance.FollowTarget = vertex;
             textInstance.VertexClick += OnVertexClick;
-            _vertexInstances.Add(textInstance);
+            pointInstances.Add(textInstance);
         }
+        return pointInstances;
     }
 
     private void OnVertexClick(VertexText vertex)

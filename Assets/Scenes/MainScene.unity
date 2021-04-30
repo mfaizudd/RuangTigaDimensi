@@ -1668,17 +1668,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8308976816610691477, guid: 0e8349ce8f13874af83ff403526dd576, type: 3}
-      propertyPath: vertexText
-      value: 
-      objectReference: {fileID: 8691619679473585590, guid: 8f78b9c3e7b1e766589b05ddfa5bc8ac, type: 3}
-    - target: {fileID: 8308976816610691477, guid: 0e8349ce8f13874af83ff403526dd576, type: 3}
-      propertyPath: worldCanvas
-      value: 
-      objectReference: {fileID: 8707392861400430567, guid: 4634ab6c3eb0bd48c87ffc9ae90ee9ed, type: 3}
-    - target: {fileID: 8308976816610691477, guid: 0e8349ce8f13874af83ff403526dd576, type: 3}
-      propertyPath: instantiateCanvas
-      value: 1
+    - target: {fileID: 4534127469872714381, guid: 0e8349ce8f13874af83ff403526dd576, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6215079690057171947, guid: 0e8349ce8f13874af83ff403526dd576, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e8349ce8f13874af83ff403526dd576, type: 3}
