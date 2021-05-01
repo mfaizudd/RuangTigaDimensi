@@ -46,6 +46,33 @@ public class Geometry : MonoBehaviour
         return pointInstances;
     }
 
+    public void SetPointsVisibility(string pointType, bool value)
+    {
+        switch (pointType)
+        {
+            case "Vertex":
+                SetPointsVisibility(_vertexInstances, value);
+                break;
+            case "Edge":
+                SetPointsVisibility(_edgeInstances, value);
+                break;
+            case "Face":
+                SetPointsVisibility(_faceInstances, value);
+                break;
+            default:
+                Debug.Log($"Unsupported point type: {pointType}");
+                break;
+        }
+    }
+
+    public void SetPointsVisibility(IEnumerable<VertexText> points, bool value)
+    {
+        foreach (var point in points)
+        {
+            point.gameObject.SetActive(value);
+        }
+    }
+
     private void OnVertexClick(VertexText vertex)
     {
         var index = _vertexInstances.IndexOf(vertex);

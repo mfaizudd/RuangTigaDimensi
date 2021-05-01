@@ -1,6 +1,4 @@
-using System;
 using EnsignBandeng.UI;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +8,7 @@ public class ModelMenu : MonoBehaviour
     [SerializeField] private EToggle wireframeToggle;
     [SerializeField] private EToggle perspectiveToggle;
     [SerializeField] private EButton resetRotationButton;
+    [SerializeField] private EToggleGroup visibilityGroup;
 
     [Header("World Space")] 
     [SerializeField] private Camera mainCamera;
@@ -20,6 +19,15 @@ public class ModelMenu : MonoBehaviour
         wireframeToggle.onValueChanged.AddListener(OnWireframeToggled);
         perspectiveToggle.onValueChanged.AddListener(OnPerspectiveToggled);
         resetRotationButton.onClick.AddListener(OnResetRotationClicked);
+        visibilityGroup.ToggleValueChanged += OnToggleValueChanged;
+    }
+
+    private void OnToggleValueChanged(bool value, Toggle toggle)
+    {
+        if (!(toggle is EToggle eToggle))
+            return;
+
+        geometry.SetPointsVisibility(eToggle.Data, value);
     }
 
     private void OnWireframeToggled(bool value)
