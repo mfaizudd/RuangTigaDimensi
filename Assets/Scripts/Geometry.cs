@@ -26,6 +26,7 @@ public class Geometry : MonoBehaviour
         _vertexInstances = InitializePoints(vertices);
         _edgeInstances = InitializePoints(edges);
         _faceInstances = InitializePoints(faces);
+        SetPointsVisibility("All", false);
     }
 
     private List<VertexText> InitializePoints(IReadOnlyCollection<Transform> points)
@@ -59,8 +60,13 @@ public class Geometry : MonoBehaviour
             case "Face":
                 SetPointsVisibility(_faceInstances, value);
                 break;
+            case "All":
+                SetPointsVisibility(_vertexInstances, value);
+                SetPointsVisibility(_edgeInstances, value);
+                SetPointsVisibility(_faceInstances, value);
+                break;
             default:
-                Debug.Log($"Unsupported point type: {pointType}");
+                Debug.Log($"Unsupported point type: {pointType}", this);
                 break;
         }
     }
