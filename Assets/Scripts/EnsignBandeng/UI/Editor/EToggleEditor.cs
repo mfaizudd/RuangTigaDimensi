@@ -14,6 +14,7 @@ namespace EnsignBandeng.UI.Editor
         private SerializedProperty _textMesh;
         private SerializedProperty _fontSize;
         private SerializedProperty _renameObject;
+        private SerializedProperty _data;
 
         protected override void OnEnable()
         {
@@ -24,6 +25,7 @@ namespace EnsignBandeng.UI.Editor
             _textMesh = serializedObject.FindProperty("textMesh");
             _fontSize = serializedObject.FindProperty("fontSize");
             _renameObject = serializedObject.FindProperty("renameObject");
+            _data = serializedObject.FindProperty("data");
         }
 
         public override void OnInspectorGUI()
@@ -46,6 +48,7 @@ namespace EnsignBandeng.UI.Editor
             EditorGUILayout.PropertyField(_textMesh);
             EditorGUILayout.PropertyField(_fontSize);
             EditorGUILayout.PropertyField(_renameObject);
+            EditorGUILayout.PropertyField(_data);
             serializedObject.ApplyModifiedProperties();
             base.OnInspectorGUI();
         }
