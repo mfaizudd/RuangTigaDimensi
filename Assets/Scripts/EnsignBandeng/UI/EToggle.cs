@@ -17,12 +17,19 @@ namespace EnsignBandeng.UI
             }
         }
         
+        public string Data
+        {
+            get => data;
+            set => data = value;
+        }
+        
         [SerializeField] private string text;
         [SerializeField] private bool alternateActiveText = false;
         [SerializeField] private string alternateText;
         [SerializeField] private TextMeshProUGUI textMesh;
         [SerializeField] private float fontSize = 22;
         [SerializeField] private bool renameObject = false;
+        [SerializeField] private string data;
 
         private string _defaultText;
 
@@ -44,7 +51,7 @@ namespace EnsignBandeng.UI
         {
             if (renameObject)
             {
-                gameObject.name = $"{text} Button";
+                gameObject.name = $"{text} Toggle";
             }
             if (textMesh == null) return;
             textMesh.text = text;
