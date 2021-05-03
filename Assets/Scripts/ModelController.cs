@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class ModelController : MonoBehaviour, MainControl.IModelActions
@@ -8,6 +10,7 @@ public class ModelController : MonoBehaviour, MainControl.IModelActions
     
     private MainControl _control;
     private Vector2 _dragDelta = Vector2.zero;
+    private Vector2 _point = Vector2.zero;
     private bool _isDragging;
 
     private void Awake()
@@ -39,11 +42,24 @@ public class ModelController : MonoBehaviour, MainControl.IModelActions
     {
         if (context.started)
         {
+            var pointer = new PointerEventData(EventSystem.current)
+            {
+                position = _point
+            };
+            var results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(pointer, results);
+            if (results.Count > 0) return;
+            
             _isDragging = true;
         }
         else if (context.canceled)
         {
             _isDragging = false;
         }
+    }
+
+    public void OnPoint(InputAction.CallbackContext context)
+    {
+        _point = context.ReadValue<Vector2>();
     }
 }

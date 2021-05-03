@@ -33,6 +33,14 @@ public class @MainControl : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Point"",
+                    ""type"": ""Value"",
+                    ""id"": ""219027c8-7c19-43cd-91b3-81edf7e5879e"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -72,11 +80,33 @@ public class @MainControl : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""335ef720-6929-4a27-acdb-593ed0dacfa9"",
-                    ""path"": ""<Touchscreen>/primaryTouch/press"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Touchscreen"",
                     ""action"": ""Drag"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eeca24be-b22e-4f3c-a248-d232f5545370"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & mouse"",
+                    ""action"": ""Point"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fd4d79d4-eb54-4db0-80b8-e6beea26803d"",
+                    ""path"": ""<Touchscreen>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Touchscreen"",
+                    ""action"": ""Point"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -117,6 +147,7 @@ public class @MainControl : IInputActionCollection, IDisposable
         m_Model = asset.FindActionMap("Model", throwIfNotFound: true);
         m_Model_DragDelta = m_Model.FindAction("DragDelta", throwIfNotFound: true);
         m_Model_Drag = m_Model.FindAction("Drag", throwIfNotFound: true);
+        m_Model_Point = m_Model.FindAction("Point", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -168,12 +199,14 @@ public class @MainControl : IInputActionCollection, IDisposable
     private IModelActions m_ModelActionsCallbackInterface;
     private readonly InputAction m_Model_DragDelta;
     private readonly InputAction m_Model_Drag;
+    private readonly InputAction m_Model_Point;
     public struct ModelActions
     {
         private @MainControl m_Wrapper;
         public ModelActions(@MainControl wrapper) { m_Wrapper = wrapper; }
         public InputAction @DragDelta => m_Wrapper.m_Model_DragDelta;
         public InputAction @Drag => m_Wrapper.m_Model_Drag;
+        public InputAction @Point => m_Wrapper.m_Model_Point;
         public InputActionMap Get() { return m_Wrapper.m_Model; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -189,6 +222,9 @@ public class @MainControl : IInputActionCollection, IDisposable
                 @Drag.started -= m_Wrapper.m_ModelActionsCallbackInterface.OnDrag;
                 @Drag.performed -= m_Wrapper.m_ModelActionsCallbackInterface.OnDrag;
                 @Drag.canceled -= m_Wrapper.m_ModelActionsCallbackInterface.OnDrag;
+                @Point.started -= m_Wrapper.m_ModelActionsCallbackInterface.OnPoint;
+                @Point.performed -= m_Wrapper.m_ModelActionsCallbackInterface.OnPoint;
+                @Point.canceled -= m_Wrapper.m_ModelActionsCallbackInterface.OnPoint;
             }
             m_Wrapper.m_ModelActionsCallbackInterface = instance;
             if (instance != null)
@@ -199,6 +235,9 @@ public class @MainControl : IInputActionCollection, IDisposable
                 @Drag.started += instance.OnDrag;
                 @Drag.performed += instance.OnDrag;
                 @Drag.canceled += instance.OnDrag;
+                @Point.started += instance.OnPoint;
+                @Point.performed += instance.OnPoint;
+                @Point.canceled += instance.OnPoint;
             }
         }
     }
@@ -225,5 +264,6 @@ public class @MainControl : IInputActionCollection, IDisposable
     {
         void OnDragDelta(InputAction.CallbackContext context);
         void OnDrag(InputAction.CallbackContext context);
+        void OnPoint(InputAction.CallbackContext context);
     }
 }
