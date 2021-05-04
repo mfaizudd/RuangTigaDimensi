@@ -64,3 +64,5 @@ crashlytics-build.properties
 # Blender backup files
 *.blend[0-9]*
 
+# Visual studio config
+.vsconfig
