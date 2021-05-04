@@ -36,7 +36,7 @@ public class Geometry : MonoBehaviour
     {
         if (_line.positionCount <= 0) return;
 
-        _line.SetPositions(_indices.Select(i => _points[i.Type][i.Index].transform.position).ToArray());
+        _line.SetPositions(_indices.Select(i => _points[i.Type][i.Index].FollowTarget.position).ToArray());
     }
 
     private List<PointText> InitializePoints(IReadOnlyCollection<Transform> points, string type)
