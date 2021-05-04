@@ -37,7 +37,7 @@ public class @MainControl : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Point"",
                     ""type"": ""Value"",
-                    ""id"": ""219027c8-7c19-43cd-91b3-81edf7e5879e"",
+                    ""id"": ""58352cd6-a1e6-4a6f-8f22-bfb949643d87"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -80,7 +80,7 @@ public class @MainControl : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""335ef720-6929-4a27-acdb-593ed0dacfa9"",
-                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""path"": ""<Touchscreen>/primaryTouch/press"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Touchscreen"",
@@ -90,7 +90,7 @@ public class @MainControl : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""eeca24be-b22e-4f3c-a248-d232f5545370"",
+                    ""id"": ""92942a91-cf8d-4544-b389-51f9accd3e6e"",
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -101,11 +101,11 @@ public class @MainControl : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""fd4d79d4-eb54-4db0-80b8-e6beea26803d"",
+                    ""id"": ""b36e0744-38bb-4410-b23e-255e9a494e11"",
                     ""path"": ""<Touchscreen>/position"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Touchscreen"",
+                    ""groups"": """",
                     ""action"": ""Point"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
