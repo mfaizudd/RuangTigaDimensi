@@ -27,8 +27,8 @@ public class Geometry : MonoBehaviour
     {
         TryGetComponent(out _line);
         _points.Add(Vertex, InitializePoints(vertices, Vertex));
-        _points.Add(Edge, InitializePoints(vertices, Edge));
-        _points.Add(Face, InitializePoints(vertices, Face));
+        _points.Add(Edge, InitializePoints(edges, Edge));
+        _points.Add(Face, InitializePoints(faces, Face));
         SetPointsVisibility(false, Edge, Face);
     }
 
