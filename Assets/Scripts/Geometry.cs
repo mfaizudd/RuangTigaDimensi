@@ -1,8 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.Mathematics;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -13,76 +12,76 @@ public class Geometry : MonoBehaviour
     [SerializeField] private Transform[] vertices;
     [SerializeField] private Transform[] edges;
     [SerializeField] private Transform[] faces;
-    [SerializeField] private VertexText vertexText;
+    [FormerlySerializedAs("vertexText")] [SerializeField] private PointText pointText;
     [SerializeField] private Transform worldCanvas;
     [SerializeField] private bool instantiateCanvas;
 
-    private List<VertexText> _vertexInstances;
-    private List<VertexText> _edgeInstances;
-    private List<VertexText> _faceInstances;
+    private readonly Dictionary<string, List<PointText>> _points = new Dictionary<string, List<PointText>>();
+    private readonly List<GeometryPoint> _indices = new List<GeometryPoint>(2);
+    private const string Vertex = "Vertex";
+    private const string Edge = "Edge";
+    private const string Face = "Face";
+    private LineRenderer _line;
 
     private void Awake()
     {
-        _vertexInstances = InitializePoints(vertices);
-        _edgeInstances = InitializePoints(edges);
-        _faceInstances = InitializePoints(faces);
-        SetPointsVisibility("All", false);
+        TryGetComponent(out _line);
+        _points.Add(Vertex, InitializePoints(vertices, Vertex));
+        _points.Add(Edge, InitializePoints(vertices, Edge));
+        _points.Add(Face, InitializePoints(vertices, Face));
+        SetPointsVisibility(false, Edge, Face);
     }
 
-    private List<VertexText> InitializePoints(IReadOnlyCollection<Transform> points)
+    private void Update()
     {
-        var pointInstances = new List<VertexText>(points.Count);
+        if (_line.positionCount <= 0) return;
+
+        _line.SetPositions(_indices.Select(i => _points[i.Type][i.Index].transform.position).ToArray());
+    }
+
+    private List<PointText> InitializePoints(IReadOnlyCollection<Transform> points, string type)
+    {
+        var pointInstances = new List<PointText>(points.Count);
         foreach (var vertex in points)
         {
             var canvasInstance = instantiateCanvas ? Instantiate(worldCanvas, Vector3.zero, Quaternion.identity) : worldCanvas;
-            var textInstance = Instantiate(vertexText, canvasInstance);
+            var textInstance = Instantiate(pointText, canvasInstance);
             var textTransform = textInstance.transform;
             textTransform.position = vertex.position;
             textTransform.rotation = Quaternion.identity;
             textInstance.SetText(vertex.name);
             textInstance.FollowTarget = vertex;
-            textInstance.VertexClick += OnVertexClick;
+            textInstance.Type = type;
+            textInstance.PointClick += OnPointClick;
             pointInstances.Add(textInstance);
         }
         return pointInstances;
     }
 
-    public void SetPointsVisibility(string pointType, bool value)
+    public void SetPointsVisibility(bool value, params string[] types)
     {
-        switch (pointType)
+        foreach (var type in types)
         {
-            case "Vertex":
-                SetPointsVisibility(_vertexInstances, value);
-                break;
-            case "Edge":
-                SetPointsVisibility(_edgeInstances, value);
-                break;
-            case "Face":
-                SetPointsVisibility(_faceInstances, value);
-                break;
-            case "All":
-                SetPointsVisibility(_vertexInstances, value);
-                SetPointsVisibility(_edgeInstances, value);
-                SetPointsVisibility(_faceInstances, value);
-                break;
-            default:
-                Debug.Log($"Unsupported point type: {pointType}", this);
-                break;
+            if (!_points.TryGetValue(type, out var points))
+            {
+                Debug.Log($"Unsupported point type: {type}", this);
+                continue;
+            }
+            
+            foreach (var point in points)
+            {
+                point.gameObject.SetActive(value);
+            }
         }
     }
 
-    public void SetPointsVisibility(IEnumerable<VertexText> points, bool value)
+    private void OnPointClick(PointText point, string type)
     {
-        foreach (var point in points)
-        {
-            point.gameObject.SetActive(value);
-        }
-    }
-
-    private void OnVertexClick(VertexText vertex)
-    {
-        var index = _vertexInstances.IndexOf(vertex);
+        if (!_points.TryGetValue(type, out var points)) return;
         
+        var index = points.IndexOf(point);
+        _indices.Add(new GeometryPoint{Index = index, Type = type});
+        _line.positionCount = _indices.Count;
     }
 
     public void SetFrameVisibility(bool frameVisible)

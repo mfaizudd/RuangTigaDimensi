@@ -1432,6 +1432,10 @@ PrefabInstance:
       value: Vertex
       objectReference: {fileID: 0}
     - target: {fileID: 506389829884944349, guid: 1e8ca946bfe38b740afcaf22359020f5, type: 3}
+      propertyPath: m_IsOn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 506389829884944349, guid: 1e8ca946bfe38b740afcaf22359020f5, type: 3}
       propertyPath: m_Group
       value: 
       objectReference: {fileID: 649053263}

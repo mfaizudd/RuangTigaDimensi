@@ -27,7 +27,7 @@ public class ModelMenu : MonoBehaviour
         if (!(toggle is EToggle eToggle))
             return;
 
-        geometry.SetPointsVisibility(eToggle.Data, value);
+        geometry.SetPointsVisibility(value, eToggle.Data);
     }
 
     private void OnWireframeToggled(bool value)

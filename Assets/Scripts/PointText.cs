@@ -3,9 +3,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class VertexText : MonoBehaviour
+public class PointText : MonoBehaviour
 {
-    public event Action<VertexText> VertexClick;
+    public string Type { get; set; }
+    public event Action<PointText, string> PointClick;
     
     [SerializeField] private TextMeshProUGUI textMesh;
     [SerializeField] private float gap = 1f;
@@ -32,7 +33,7 @@ public class VertexText : MonoBehaviour
 
     private void OnVertexClick()
     {
-        VertexClick?.Invoke(this);
+        PointClick?.Invoke(this, Type);
     }
 
     private void Update()
