@@ -80,7 +80,16 @@ public class Geometry : MonoBehaviour
         if (!_points.TryGetValue(type, out var points)) return;
         
         var index = points.IndexOf(point);
-        _indices.Add(new GeometryPoint{Index = index, Type = type});
+        var geometryPoint = new GeometryPoint {Index = index, Type = type};
+        var existingIndex = _indices.IndexOf(geometryPoint);
+        if (existingIndex >= 0)
+        {
+            _indices.RemoveAt(existingIndex);
+            _line.positionCount = _indices.Count;
+            return;
+        }
+
+        _indices.Add(geometryPoint);
         _line.positionCount = _indices.Count;
     }
 
