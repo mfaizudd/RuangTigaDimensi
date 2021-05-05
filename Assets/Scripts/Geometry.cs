@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -36,7 +34,13 @@ public class Geometry : MonoBehaviour
     {
         if (_line.positionCount <= 0) return;
 
-        _line.SetPositions(_indices.Select(i => _points[i.Type][i.Index].FollowTarget.position).ToArray());
+        for (var i = 0; i < _line.positionCount; i++)
+        {
+            var index = _indices[i];
+            var position = _points[index.Type][index.Index].FollowTarget.position;
+            var direction = position.normalized;
+            _line.SetPosition(i, position + direction * 0.1f);
+        }
     }
 
     private List<PointText> InitializePoints(IReadOnlyCollection<Transform> points, string type)
