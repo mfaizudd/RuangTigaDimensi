@@ -14,6 +14,7 @@ public class Geometry : MonoBehaviour
     [FormerlySerializedAs("vertexText")] [SerializeField] private PointText pointText;
     [SerializeField] private Transform worldCanvas;
     [SerializeField] private bool instantiateCanvas;
+    [SerializeField, Min(2)] private int maxSelection = 2;
 
     private readonly Dictionary<string, List<PointText>> _points = new Dictionary<string, List<PointText>>();
     private readonly List<GeometryPoint> _indices = new List<GeometryPoint>(2);
@@ -93,6 +94,11 @@ public class Geometry : MonoBehaviour
             _indices.RemoveAt(existingIndex);
             _line.positionCount = _indices.Count;
             return;
+        }
+
+        if (_line.positionCount >= maxSelection)
+        {
+            _indices.RemoveAt(0);
         }
 
         _indices.Add(geometryPoint);
