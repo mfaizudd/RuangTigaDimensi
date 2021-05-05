@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -81,7 +82,8 @@ public class Geometry : MonoBehaviour
 
     private void OnPointClick(PointText point, string type)
     {
-        if (!_points.TryGetValue(type, out var points)) return;
+        if (!_points.TryGetValue(type, out var points))
+            throw new ArgumentException("Unsupported type", nameof(type));
         
         var index = points.IndexOf(point);
         var geometryPoint = new GeometryPoint {Index = index, Type = type};
