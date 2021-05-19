@@ -1,12 +1,17 @@
 using System;
+using UnityEngine;
 
 namespace Data
 {
     [Serializable]
     public class Content : IContent
     {
-        public string Key { get; set; }
-        public string Name { get; set; }
-        public string Text { get; set; }
+        [SerializeField] private string key;
+        [SerializeField] private string name;
+        [SerializeField] private string text;
+        
+        public string Key { get => key; set => key = value; }
+        public string Name { get => name; set => name = value; }
+        public string Text { get => text; set => text = value; }
     }
 }
