@@ -111,6 +111,11 @@ public class Geometry : MonoBehaviour
         modelFrame.SetActive(frameVisible);
     }
 
+    public void SetRotation(Quaternion rotation)
+    {
+        StartCoroutine(RotateTo(rotation));
+    }
+
     public void ResetRotation()
     {
         StartCoroutine(RotateTo(Quaternion.identity));
