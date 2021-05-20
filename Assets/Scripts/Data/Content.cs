@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Data
 {
@@ -8,10 +9,10 @@ namespace Data
     {
         [SerializeField] private string key;
         [SerializeField] private string name;
-        [SerializeField] private string text;
+        [SerializeField] private ContentStage contentPrefab;
         
         public string Key { get => key; set => key = value; }
         public string Name { get => name; set => name = value; }
-        public string Text { get => text; set => text = value; }
+        public ContentStage ContentPrefab { get => contentPrefab; set => contentPrefab = value; }
     }
 }

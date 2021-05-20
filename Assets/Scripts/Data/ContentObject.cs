@@ -8,10 +8,10 @@ namespace Data
     {
         [SerializeField] private string key;
         [SerializeField] private string contentName;
-        [SerializeField] private string text;
+        [SerializeField] private ContentStage contentPrefab;
         
         public string Key { get => key; set => key = value; }
         public string Name { get => contentName; set => contentName = value; }
-        public string Text { get => text; set => text = value; }
+        public ContentStage ContentPrefab { get => contentPrefab; set => contentPrefab = value; }
     }
 }
