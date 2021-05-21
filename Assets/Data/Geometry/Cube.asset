@@ -12,4 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae96b1553b2c492e810168c427db7c56, type: 3}
   m_Name: Cube
   m_EditorClassIdentifier: 
-  contents: []
+  contents:
+  - key: A-B
+    name: AB Line
+    contentPrefab: {fileID: 0}
+  - key: A-C
+    name: AC Line
+    contentPrefab: {fileID: 0}
+  - key: A-C
+    name: AC Line
+    contentPrefab: {fileID: 0}
