@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 namespace Data
 {
     [Serializable]
-    public class Content : IContent
+    public class Content
     {
         [SerializeField] private string key;
         [SerializeField] private string name;

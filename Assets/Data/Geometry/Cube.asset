@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8251776df8a840a3a99457ac6c37ce47, type: 3}
-  m_Name: AB
+  m_Script: {fileID: 11500000, guid: ae96b1553b2c492e810168c427db7c56, type: 3}
+  m_Name: Cube
   m_EditorClassIdentifier: 
-  key: 
-  contentName: 
-  text: 
+  contents: []

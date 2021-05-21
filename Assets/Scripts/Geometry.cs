@@ -1,20 +1,25 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Data;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class Geometry : MonoBehaviour
 {
+    public event Action<Vector3[]> LineCreated;
+    public event Action LineDestroyed;
+    
     [SerializeField] private GameObject model;
     [SerializeField] private GameObject modelFrame;
     [SerializeField] private Transform[] vertices;
     [SerializeField] private Transform[] edges;
     [SerializeField] private Transform[] faces;
-    [FormerlySerializedAs("vertexText")] [SerializeField] private PointText pointText;
+    [SerializeField] private PointText pointText;
     [SerializeField] private Transform worldCanvas;
     [SerializeField] private bool instantiateCanvas;
     [SerializeField, Min(2)] private int maxSelection = 2;
+    [SerializeField] private ContentCollection contents;
 
     private readonly Dictionary<string, List<PointText>> _points = new Dictionary<string, List<PointText>>();
     private readonly List<GeometryPoint> _indices = new List<GeometryPoint>(2);
@@ -93,6 +98,7 @@ public class Geometry : MonoBehaviour
         {
             _indices.RemoveAt(existingIndex);
             _line.positionCount = _indices.Count;
+            LineDestroyed?.Invoke();
             return;
         }
 
@@ -103,6 +109,12 @@ public class Geometry : MonoBehaviour
 
         _indices.Add(geometryPoint);
         _line.positionCount = _indices.Count;
+
+        if (_line.positionCount != maxSelection) return;
+
+        var linePoints = new Vector3[_line.positionCount];
+        _line.GetPositions(linePoints);
+        LineCreated?.Invoke(linePoints);
     }
 
     public void SetFrameVisibility(bool frameVisible)
