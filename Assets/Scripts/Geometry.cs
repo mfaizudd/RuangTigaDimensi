@@ -135,13 +135,7 @@ public class Geometry : MonoBehaviour
 
     private IEnumerator RotateTo(Quaternion target)
     {
-        const float transitionTime = 1f;
-        var t = 0f;
-        while (t < 1)
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, target, t);
-            t += Time.deltaTime / transitionTime;
-            yield return null;
-        }
+        yield return StartCoroutine(TweenUtil.AnimateQuaternion(transform.rotation, target, 0.5f,
+            r => transform.rotation = r));
     }
 }
