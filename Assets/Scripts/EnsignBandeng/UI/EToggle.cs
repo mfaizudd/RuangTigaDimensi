@@ -26,24 +26,30 @@ namespace EnsignBandeng.UI
         [SerializeField] private string text;
         [SerializeField] private bool alternateActiveText = false;
         [SerializeField] private string alternateText;
+        [SerializeField] private bool swapToPressedSprite = false;
         [SerializeField] private TextMeshProUGUI textMesh;
         [SerializeField] private float fontSize = 22;
         [SerializeField] private bool renameObject = false;
         [SerializeField] private string data;
 
         private string _defaultText;
+        private Sprite _originalSprite;
 
         protected override void Awake()
         {
             base.Awake();
             _defaultText = text;
-            if (alternateActiveText)
-                onValueChanged.AddListener(OnValueChanged);
+            _originalSprite = image.sprite;
+            onValueChanged.AddListener(OnValueChanged);
         }
 
         private void OnValueChanged(bool value)
         {
-            Text = value ? alternateText : _defaultText;
+            if (alternateActiveText)
+                Text = value ? alternateText : _defaultText;
+
+            if (swapToPressedSprite)
+                image.sprite = value ? spriteState.pressedSprite : _originalSprite;
         }
 
         #if UNITY_EDITOR
