@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Data;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Geometry : MonoBehaviour
 {
-    public event Action<Vector3[]> LineCreated;
+    public event Action<Vector3[], GeometryPoint[]> LineCreated;
     public event Action LineDestroyed;
+    public ContentCollection Contents => contents;
     
     [SerializeField] private GameObject model;
     [SerializeField] private GameObject modelFrame;
@@ -60,7 +60,7 @@ public class Geometry : MonoBehaviour
             var textTransform = textInstance.transform;
             textTransform.position = vertex.position;
             textTransform.rotation = Quaternion.identity;
-            textInstance.SetText(vertex.name);
+            textInstance.Text = vertex.name;
             textInstance.FollowTarget = vertex;
             textInstance.Type = type;
             textInstance.PointClick += OnPointClick;
@@ -86,15 +86,15 @@ public class Geometry : MonoBehaviour
         }
     }
 
-    private void OnPointClick(PointText point, string type)
+    private void OnPointClick(PointText point, string type, bool pressed)
     {
         if (!_points.TryGetValue(type, out var points))
             throw new ArgumentException("Unsupported type", nameof(type));
         
         var index = points.IndexOf(point);
-        var geometryPoint = new GeometryPoint {Index = index, Type = type};
+        var geometryPoint = new GeometryPoint {Name=point.Text, Index = index, Type = type};
         var existingIndex = _indices.IndexOf(geometryPoint);
-        if (existingIndex >= 0)
+        if (existingIndex >= 0 || !pressed)
         {
             _indices.RemoveAt(existingIndex);
             _line.positionCount = _indices.Count;
@@ -114,7 +114,7 @@ public class Geometry : MonoBehaviour
 
         var linePoints = new Vector3[_line.positionCount];
         _line.GetPositions(linePoints);
-        LineCreated?.Invoke(linePoints);
+        LineCreated?.Invoke(linePoints, _indices.ToArray());
     }
 
     public void SetFrameVisibility(bool frameVisible)

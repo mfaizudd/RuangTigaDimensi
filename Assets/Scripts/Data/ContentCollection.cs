@@ -1,11 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Data
 {
     [CreateAssetMenu(fileName = "New Content Collection", menuName = "Content/Content Collection", order = 0)]
-    public class ContentCollection : ScriptableObject, IList<Content>
+    public class ContentCollection : ScriptableObject, IList<Content>, IEnumerable<Content>
     {
         [SerializeField] private List<Content> contents;
 

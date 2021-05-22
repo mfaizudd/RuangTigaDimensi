@@ -1,16 +1,17 @@
 using System;
+using EnsignBandeng.UI;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class PointText : MonoBehaviour
 {
     public string Type { get; set; }
-    public event Action<PointText, string> PointClick;
+    public event Action<PointText, string, bool> PointClick;
     
-    [SerializeField] private TextMeshProUGUI textMesh;
     [SerializeField] private float gap = 1f;
-    [SerializeField] private Button vertexButton;
+    [SerializeField] private EToggle vertexToggle;
 
     private bool _isFollowTargetNull;
     private Transform _followTarget;
@@ -28,12 +29,12 @@ public class PointText : MonoBehaviour
     private void Awake()
     {
         _isFollowTargetNull = FollowTarget == null;
-        vertexButton.onClick.AddListener(OnVertexClick);
+        vertexToggle.onValueChanged.AddListener(OnVertexClick);
     }
 
-    private void OnVertexClick()
+    private void OnVertexClick(bool pressed)
     {
-        PointClick?.Invoke(this, Type);
+        PointClick?.Invoke(this, Type, pressed);
     }
 
     private void Update()
@@ -47,8 +48,9 @@ public class PointText : MonoBehaviour
 
     }
 
-    public void SetText(string text)
+    public string Text
     {
-        textMesh.text = text;
+        get => vertexToggle.Text;
+        set => vertexToggle.Text = value;
     }
 }

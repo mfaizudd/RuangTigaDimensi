@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Cinemachine;
 using UnityEngine;
 
@@ -10,8 +11,10 @@ public class ContentManager : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     [SerializeField] private CinemachineVirtualCamera mainVirtualCamera;
     [SerializeField] private Camera contentCamera;
+    [SerializeField] private Transform contentContainer;
 
     private bool _zoomedIn = true;
+    private ContentStage _currentStage = null;
 
     private void Awake()
     {
@@ -28,9 +31,12 @@ public class ContentManager : MonoBehaviour
 
         if (!_zoomedIn)
             StartCoroutine(CloseContent(0.5f));
+
+        if (_currentStage != null)
+            Destroy(_currentStage.gameObject);
     }
 
-    private void OnLineCreated(Vector3[] linePoints)
+    private void OnLineCreated(Vector3[] linePoints, GeometryPoint[] points)
     {
         foreach (var ui in userInterfaces)
         {
@@ -39,6 +45,13 @@ public class ContentManager : MonoBehaviour
 
         if (_zoomedIn)
             StartCoroutine(OpenContent(0.5f));
+
+        var key = string.Join("-", points.Select(p => p.Name));
+        var content = geometry.Contents.FirstOrDefault(c => c.Key == key);
+        if (content == null) return;
+
+        _currentStage = Instantiate(content.ContentPrefab, contentContainer.position, Quaternion.identity);
+        _currentStage.Inject(geometry);
     }
 
     private IEnumerator OpenContent(float transitionTime)
@@ -54,12 +67,14 @@ public class ContentManager : MonoBehaviour
         var endOffset = startOffset + Vector3.back * 5;
         yield return StartCoroutine(TweenUtil.AnimateVector(startOffset, endOffset, transitionTime, v => transposer.m_FollowOffset = v));
         contentCamera.gameObject.SetActive(true);
+        contentContainer.gameObject.SetActive(true);
         _zoomedIn = false;
     }
 
     private IEnumerator CloseContent(float transitionTime)
     {
         contentCamera.gameObject.SetActive(false);
+        contentContainer.gameObject.SetActive(false);
         var rect = mainCamera.rect;
         StartCoroutine(TweenUtil.AnimateFloat(rect.width, 1f, transitionTime, v =>
         {
