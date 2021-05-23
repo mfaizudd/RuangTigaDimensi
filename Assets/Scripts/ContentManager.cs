@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using Cinemachine;
 using UnityEngine;
@@ -14,7 +13,7 @@ public class ContentManager : MonoBehaviour
     [SerializeField] private Transform contentContainer;
 
     private bool _zoomedIn = true;
-    private ContentStage _currentStage = null;
+    private ContentStage _currentStage;
 
     private void Awake()
     {
@@ -46,7 +45,8 @@ public class ContentManager : MonoBehaviour
         if (_zoomedIn)
             StartCoroutine(OpenContent(0.5f));
 
-        var key = string.Join("-", points.Select(p => p.Name));
+        var sortedPoints = points.Select(p => p.Name).OrderBy(p => p);
+        var key = string.Join("-", sortedPoints);
         var content = geometry.Contents.FirstOrDefault(c => c.Key == key);
         if (content == null) return;
 
