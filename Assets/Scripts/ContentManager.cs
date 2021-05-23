@@ -21,7 +21,12 @@ public class ContentManager : MonoBehaviour
     {
         geometry.LineCreated += OnLineCreated;
         geometry.LineDestroyed += OnLineDestroyed;
-        closeButton.onClick.AddListener(OnLineDestroyed);
+        closeButton.onClick.AddListener(OnClose);
+    }
+
+    private void OnClose()
+    {
+        geometry.ClearSelection();
     }
 
     private void OnLineDestroyed()

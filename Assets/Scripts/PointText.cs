@@ -37,9 +37,14 @@ public class PointText : MonoBehaviour
         PointClick?.Invoke(this, Type, pressed);
     }
 
-    public void Toggle(bool value)
+    public void ToggleWithoutNotify(bool value)
     {
         vertexToggle.ToggleWithoutNotify(value);
+    }
+
+    public void Toggle(bool value)
+    {
+        vertexToggle.isOn = value;
     }
 
     private void Update()

@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Data;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Geometry : MonoBehaviour
 {
@@ -15,7 +17,7 @@ public class Geometry : MonoBehaviour
     [SerializeField] private Transform[] vertices;
     [SerializeField] private Transform[] edges;
     [SerializeField] private Transform[] faces;
-    [SerializeField] private PointText pointText;
+    [SerializeField] private PointText pointTextPrefab;
     [SerializeField] private Transform worldCanvas;
     [SerializeField] private bool instantiateCanvas;
     [SerializeField, Min(2)] private int maxSelection = 2;
@@ -56,7 +58,7 @@ public class Geometry : MonoBehaviour
         foreach (var vertex in points)
         {
             var canvasInstance = instantiateCanvas ? Instantiate(worldCanvas, Vector3.zero, Quaternion.identity) : worldCanvas;
-            var textInstance = Instantiate(pointText, canvasInstance);
+            var textInstance = Instantiate(pointTextPrefab, canvasInstance);
             var textTransform = textInstance.transform;
             textTransform.position = vertex.position;
             textTransform.rotation = Quaternion.identity;
@@ -104,7 +106,7 @@ public class Geometry : MonoBehaviour
 
         if (_line.positionCount >= maxSelection)
         {
-            points[_indices[0].Index].Toggle(false);
+            points[_indices[0].Index].ToggleWithoutNotify(false);
             _indices.RemoveAt(0);
         }
 
@@ -116,6 +118,15 @@ public class Geometry : MonoBehaviour
         var linePoints = new Vector3[_line.positionCount];
         _line.GetPositions(linePoints);
         LineCreated?.Invoke(linePoints, _indices.ToArray());
+    }
+
+    public void ClearSelection()
+    {
+        var points = _indices.ToList();
+        foreach (var pointText in points.Select(point => _points[point.Type][point.Index]))
+        {
+            pointText.Toggle(false);
+        }
     }
 
     public void SetFrameVisibility(bool frameVisible)
