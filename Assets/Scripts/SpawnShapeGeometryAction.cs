@@ -6,7 +6,7 @@ public class SpawnShapeGeometryAction : GeometryAction
     [SerializeField] private Vector3 rotation;
     [SerializeField] private Vector3 position;
     [SerializeField] private Vector3 scale = Vector3.one;
-    [SerializeField] private float gap = 0.5f;
+    [SerializeField] private float gap = 0.1f;
 
     private GameObject _instantiatedShape;
     public override void Invoke(Geometry geometry)

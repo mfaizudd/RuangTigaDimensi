@@ -57,7 +57,7 @@ public class ContentManager : MonoBehaviour
         var sortedPoints = points.Select(p => p.Name).OrderBy(p => p);
         var key = string.Join("-", sortedPoints);
         var content = geometry.Contents.FirstOrDefault(c => c.Key == key);
-        if (content == null) return;
+        if (content == null || content.ContentPrefab == null) return;
 
         _currentStage = Instantiate(content.ContentPrefab, contentContainer.position, Quaternion.identity);
         _currentStage.Inject(geometry);
