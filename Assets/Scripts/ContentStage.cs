@@ -21,4 +21,12 @@ public class ContentStage : MonoBehaviour
             action.Invoke(geometry);
         }
     }
+
+    public void Cleanup()
+    {
+        foreach (var action in _actions)
+        {
+            action.Cleanup();
+        }
+    }
 }

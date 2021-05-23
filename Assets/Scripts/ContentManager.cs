@@ -31,8 +31,9 @@ public class ContentManager : MonoBehaviour
         if (!_zoomedIn)
             StartCoroutine(CloseContent(0.5f));
 
-        if (_currentStage != null)
-            Destroy(_currentStage.gameObject);
+        if (_currentStage == null) return;
+        _currentStage.Cleanup();
+        Destroy(_currentStage.gameObject);
     }
 
     private void OnLineCreated(Vector3[] linePoints, GeometryPoint[] points)
