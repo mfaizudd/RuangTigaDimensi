@@ -52,6 +52,12 @@ namespace EnsignBandeng.UI
                 image.sprite = value ? spriteState.pressedSprite : _originalSprite;
         }
 
+        public void ToggleWithoutNotify(bool value)
+        {
+            SetIsOnWithoutNotify(value);
+            OnValueChanged(value);
+        }
+
         #if UNITY_EDITOR
         protected override void OnValidate()
         {
