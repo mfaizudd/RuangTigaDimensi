@@ -25,3 +25,6 @@ MonoBehaviour:
   - key: A-F
     name: AF Line
     contentPrefab: {fileID: 8346148107146906995, guid: bcf53f195c4b430708afd310fb358951, type: 3}
+  - key: A-G
+    name: AG Line
+    contentPrefab: {fileID: 8346148107146906995, guid: 0a561ca1800124fa1bf77e5c767f4307, type: 3}
