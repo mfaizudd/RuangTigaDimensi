@@ -5,13 +5,11 @@ using UnityEngine;
 
 public class ContentStage : MonoBehaviour
 {
-    [SerializeField] private GameObject actionsHolder;
-    
     private GeometryAction[] _actions;
 
     private void Awake()
     {
-        _actions = actionsHolder.GetComponentsInChildren<GeometryAction>();
+        _actions = GetComponentsInChildren<GeometryAction>();
     }
 
     public void Inject(Geometry geometry)
