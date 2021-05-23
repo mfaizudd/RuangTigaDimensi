@@ -5,6 +5,7 @@ public class SpawnShapeGeometryAction : GeometryAction
     [SerializeField] private GameObject shapePrefab;
     [SerializeField] private Vector3 rotation;
     [SerializeField] private Vector3 position;
+    [SerializeField] private Vector3 scale = Vector3.one;
     [SerializeField] private float gap = 0.5f;
 
     private GameObject _instantiatedShape;
@@ -16,6 +17,7 @@ public class SpawnShapeGeometryAction : GeometryAction
         var instance = Instantiate(shapePrefab, geometry.transform);
         instance.transform.localPosition = positionWithGap;
         instance.transform.localRotation = eulerRotation;
+        instance.transform.localScale = scale;
         _instantiatedShape = instance;
     }
 

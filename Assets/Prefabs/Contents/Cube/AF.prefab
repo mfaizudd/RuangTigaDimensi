@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5560485288067704476}
   - component: {fileID: 8346148107146906995}
   m_Layer: 5
-  m_Name: AC
+  m_Name: AF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,3 +115,4 @@ MonoBehaviour:
   shapePrefab: {fileID: 2306649516459467770, guid: ac57d88e16586f38c9c2e8221aa6e941, type: 3}
   rotation: {x: 0, y: 0, z: 0}
   position: {x: 0, y: 0, z: -2}
+  gap: 0.1
