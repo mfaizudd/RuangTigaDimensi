@@ -7,7 +7,7 @@ public class RotateToDirectionGeometryAction : GeometryAction
     
     public override void Invoke(Geometry geometry)
     {
-        var backDirection = new Vector3(direction.x, direction.y, direction.z * -1);
+        var backDirection = new Vector3(direction.x, direction.y, direction.z * -1).normalized;
         var rotation = Quaternion.LookRotation(backDirection);
         geometry.SetRotation(rotation);
     }

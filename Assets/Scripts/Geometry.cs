@@ -7,12 +7,18 @@ using UnityEngine;
 
 public class Geometry : MonoBehaviour
 {
+    #region Events
     public delegate void OnLineCreated(Vector3[] linePoints, GeometryPoint[] points);
     public event OnLineCreated LineCreated;
 
     public delegate void OnLineDestroyed(bool cleanupOnly = false);
     public event OnLineDestroyed LineDestroyed;
+    #endregion
+    
     public ContentCollection Contents => contents;
+    public IEnumerable<Transform> Vertices => vertices;
+    public IEnumerable<Transform> Edges => edges;
+    public IEnumerable<Transform> Faces => faces;
     
     [SerializeField] private GameObject model;
     [SerializeField] private GameObject modelFrame;
