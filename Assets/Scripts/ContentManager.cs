@@ -2,6 +2,7 @@ using System.Collections;
 using System.Linq;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ContentManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class ContentManager : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera mainVirtualCamera;
     [SerializeField] private Camera contentCamera;
     [SerializeField] private Transform contentContainer;
+    [SerializeField] private Button closeButton;
 
     private bool _zoomedIn = true;
     private ContentStage _currentStage;
@@ -19,6 +21,7 @@ public class ContentManager : MonoBehaviour
     {
         geometry.LineCreated += OnLineCreated;
         geometry.LineDestroyed += OnLineDestroyed;
+        closeButton.onClick.AddListener(OnLineDestroyed);
     }
 
     private void OnLineDestroyed()
