@@ -29,14 +29,14 @@ public class ContentManager : MonoBehaviour
         geometry.ClearSelection();
     }
 
-    private void OnLineDestroyed()
+    private void OnLineDestroyed(bool cleanupOnly)
     {
         foreach (var ui in userInterfaces)
         {
             ui.SetActive(true);
         }
 
-        if (!_zoomedIn)
+        if (!_zoomedIn && !cleanupOnly)
             StartCoroutine(CloseContent(0.5f));
 
         if (_currentStage == null) return;

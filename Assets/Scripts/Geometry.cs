@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using Data;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Geometry : MonoBehaviour
 {
-    public event Action<Vector3[], GeometryPoint[]> LineCreated;
-    public event Action LineDestroyed;
+    public delegate void OnLineCreated(Vector3[] linePoints, GeometryPoint[] points);
+    public event OnLineCreated LineCreated;
+
+    public delegate void OnLineDestroyed(bool cleanupOnly = false);
+    public event OnLineDestroyed LineDestroyed;
     public ContentCollection Contents => contents;
     
     [SerializeField] private GameObject model;
@@ -108,6 +110,7 @@ public class Geometry : MonoBehaviour
         {
             points[_indices[0].Index].ToggleWithoutNotify(false);
             _indices.RemoveAt(0);
+            LineDestroyed?.Invoke(true);
         }
 
         _indices.Add(geometryPoint);
