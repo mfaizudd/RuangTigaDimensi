@@ -19,6 +19,7 @@ public class Geometry : MonoBehaviour
     public IEnumerable<Transform> Vertices => vertices;
     public IEnumerable<Transform> Edges => edges;
     public IEnumerable<Transform> Faces => faces;
+    public bool IsWireframeEnabled => modelFrame.activeSelf;
     
     [SerializeField] private GameObject model;
     [SerializeField] private GameObject modelFrame;
