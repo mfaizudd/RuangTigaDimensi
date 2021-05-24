@@ -115,8 +115,9 @@ public class Geometry : MonoBehaviour
 
         if (_line.positionCount >= maxSelection)
         {
-            points[_indices[0].Index].ToggleWithoutNotify(false);
-            _indices.RemoveAt(0);
+            var positionCount = _line.positionCount;
+            points[_indices[positionCount - 1].Index].ToggleWithoutNotify(false);
+            _indices.RemoveAt(positionCount -1);
             LineDestroyed?.Invoke(true);
         }
 
