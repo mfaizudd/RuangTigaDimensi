@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class ModelController : MonoBehaviour, MainControl.IModelActions
     private Vector2 _dragDelta = Vector2.zero;
     private Vector2 _point = Vector2.zero;
     private bool _isDragging;
+    private bool _reverse;
 
     private void Awake()
     {
@@ -30,8 +32,18 @@ public class ModelController : MonoBehaviour, MainControl.IModelActions
         if (!_isDragging) return;
         
         model.StopAllCoroutines();
-        model.transform.Rotate(Vector3.down, _dragDelta.x * speed, Space.Self);
+
+        var direction = _reverse ? -1 : 1;
+        model.transform.Rotate(Vector3.down, _dragDelta.x * speed * direction, Space.Self);
         model.transform.Rotate(Vector3.right, _dragDelta.y * speed, Space.World);
+    }
+
+    private void FixedUpdate()
+    {
+        if (_isDragging) return;
+        var t = transform;
+        var hit = Physics.Raycast(t.position, model.transform.up, 100f, 1 << 6);
+        _reverse = hit;
     }
 
     public void OnDragDelta(InputAction.CallbackContext context)
