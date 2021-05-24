@@ -8,7 +8,7 @@ namespace EnsignBandeng.Editor
     public class ExtendedEditor<T> : UnityEditor.Editor where T : UnityEngine.Object
     {
         protected T Target => target as T;
-        private SerializedProperty GetProperty(string propertyName) => serializedObject.FindProperty(propertyName);
+        protected SerializedProperty GetProperty(string propertyName) => serializedObject.FindProperty(propertyName);
 
         protected void PrefixLabel(string label)
         {
@@ -63,6 +63,11 @@ namespace EnsignBandeng.Editor
             {
                 callback?.Invoke();
             }
+        }
+
+        protected void SaveChanges()
+        {
+            serializedObject.ApplyModifiedProperties();
         }
     }
 }

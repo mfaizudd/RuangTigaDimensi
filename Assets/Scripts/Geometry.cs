@@ -16,9 +16,9 @@ public class Geometry : MonoBehaviour
     #endregion
     
     public ContentCollection Contents => contents;
-    public IEnumerable<Transform> Vertices => vertices;
-    public IEnumerable<Transform> Edges => edges;
-    public IEnumerable<Transform> Faces => faces;
+    public IReadOnlyList<Transform> Vertices => vertices;
+    public IReadOnlyList<Transform> Edges => edges;
+    public IReadOnlyList<Transform> Faces => faces;
     public bool IsWireframeEnabled => modelFrame.activeSelf;
     
     [SerializeField] private GameObject model;

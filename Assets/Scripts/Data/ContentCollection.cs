@@ -9,6 +9,7 @@ namespace Data
     [CreateAssetMenu(fileName = "New Content Collection", menuName = "Content/Content Collection", order = 0)]
     public class ContentCollection : ScriptableObject, IList<Content>, IEnumerable<Content>
     {
+        [SerializeField] private Geometry geometry; // to generate contents in editor
         [SerializeField] private List<Content> contents;
 
         public IEnumerator<Content> GetEnumerator()

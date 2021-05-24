@@ -12,25 +12,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae96b1553b2c492e810168c427db7c56, type: 3}
   m_Name: Cube
   m_EditorClassIdentifier: 
+  geometry: {fileID: 8308976816610691477, guid: 0e8349ce8f13874af83ff403526dd576, type: 3}
   contents:
   - key: A-B
-    name: AB Line
     contentPrefab: {fileID: 8346148107146906995, guid: 3c6f9d007351833de91c70d0dc009744, type: 3}
   - key: A-C
-    name: AC Line
     contentPrefab: {fileID: 8346148107146906995, guid: a56b79c1a63bbfceab6b8b2398a20733, type: 3}
   - key: A-D
-    name: AD Line
     contentPrefab: {fileID: 8346148107146906995, guid: 3b54b9c46cf0d2ff383fb68c528436d9, type: 3}
   - key: A-E
-    name: AE Line
     contentPrefab: {fileID: 8346148107146906995, guid: d30fe426ddf87e6128db06eb2e321c0b, type: 3}
   - key: A-F
-    name: AF Line
     contentPrefab: {fileID: 8346148107146906995, guid: bcf53f195c4b430708afd310fb358951, type: 3}
   - key: A-G
-    name: AG Line
     contentPrefab: {fileID: 8346148107146906995, guid: 0a561ca1800124fa1bf77e5c767f4307, type: 3}
   - key: A-H
-    name: AH Line
     contentPrefab: {fileID: 8346148107146906995, guid: b906ac48056fdcc1c95dc6c3015867a1, type: 3}
+  - key: A-AB
+    contentPrefab: {fileID: 0}
+  - key: A-AD
+    contentPrefab: {fileID: 0}
+  - key: A-AE
+    contentPrefab: {fileID: 0}
+  - key: A-BC
+    contentPrefab: {fileID: 0}
+  - key: A-BF
+    contentPrefab: {fileID: 0}
+  - key: A-CD
+    contentPrefab: {fileID: 0}
+  - key: A-CG
+    contentPrefab: {fileID: 0}
+  - key: A-DH
+    contentPrefab: {fileID: 0}
+  - key: A-EF
+    contentPrefab: {fileID: 0}
+  - key: A-EH
+    contentPrefab: {fileID: 0}
+  - key: A-FG
+    contentPrefab: {fileID: 0}
+  - key: A-GH
+    contentPrefab: {fileID: 0}
+  - key: A-ABCD
+    contentPrefab: {fileID: 0}
+  - key: A-ABEF
+    contentPrefab: {fileID: 0}
+  - key: A-ADEH
+    contentPrefab: {fileID: 0}
+  - key: A-BCFG
+    contentPrefab: {fileID: 0}
+  - key: A-CDGH
+    contentPrefab: {fileID: 0}
+  - key: A-EFGH
+    contentPrefab: {fileID: 0}

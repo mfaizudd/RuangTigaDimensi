@@ -80,9 +80,11 @@ MonoBehaviour:
   - {fileID: 5146912351733707449}
   - {fileID: 9002781619163059890}
   - {fileID: 8119569545265437978}
-  pointText: {fileID: 8691619679473585590, guid: 8f78b9c3e7b1e766589b05ddfa5bc8ac, type: 3}
+  pointTextPrefab: {fileID: 8691619679473585590, guid: 8f78b9c3e7b1e766589b05ddfa5bc8ac, type: 3}
   worldCanvas: {fileID: 8707392861400430567, guid: 4634ab6c3eb0bd48c87ffc9ae90ee9ed, type: 3}
   instantiateCanvas: 1
+  maxSelection: 2
+  contents: {fileID: 11400000, guid: 8a17a28d6eea7097e92fb04d96c28cc7, type: 2}
 --- !u!120 &8678064808297667608
 LineRenderer:
   m_ObjectHideFlags: 0
