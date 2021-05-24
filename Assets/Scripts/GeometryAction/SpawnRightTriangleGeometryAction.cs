@@ -14,9 +14,9 @@ public class SpawnRightTriangleGeometryAction : GeometryAction
     {
         foreach (var triangle in triangles)
         {
-            var aVertex = geometry.Vertices.FirstOrDefault(x => x.name == triangle.A);
-            var bVertex = geometry.Vertices.FirstOrDefault(x => x.name == triangle.B);
-            var cVertex = geometry.Vertices.FirstOrDefault(x => x.name == triangle.C);
+            var aVertex = geometry.Points.FirstOrDefault(x => x.name == triangle.A);
+            var bVertex = geometry.Points.FirstOrDefault(x => x.name == triangle.B);
+            var cVertex = geometry.Points.FirstOrDefault(x => x.name == triangle.C);
             if (aVertex is null)
                 Debug.LogError("A vertex not found", this);
             if (bVertex is null)

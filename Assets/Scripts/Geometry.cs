@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Data;
+using UnityEditor.UI;
 using UnityEngine;
 
 public class Geometry : MonoBehaviour
@@ -16,6 +17,7 @@ public class Geometry : MonoBehaviour
     #endregion
     
     public ContentCollection Contents => contents;
+    public IEnumerable<Transform> Points => vertices.Concat(edges).Concat(faces);
     public IReadOnlyList<Transform> Vertices => vertices;
     public IReadOnlyList<Transform> Edges => edges;
     public IReadOnlyList<Transform> Faces => faces;
