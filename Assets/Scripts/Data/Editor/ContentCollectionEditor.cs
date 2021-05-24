@@ -12,6 +12,7 @@ namespace Data.Editor
     {
         private SerializedProperty _geometry;
         private SerializedProperty _contents;
+        private Object _prefabToClone;
         private void OnEnable()
         {
             _geometry = GetProperty("geometry");
@@ -24,6 +25,7 @@ namespace Data.Editor
             if (_geometry.objectReferenceValue is { })
                 DrawButton("Generate", OnGenerate);
             DrawProperty(_contents);
+            _prefabToClone = EditorGUILayout.ObjectField(_prefabToClone, typeof(GameObject), false);
             SaveChanges();
         }
 
@@ -67,12 +69,19 @@ namespace Data.Editor
                 {
                     var jVertex = targetPoint.name;
                     var key = $"{iVertex}-{jVertex}";
-                    var asset = AssetDatabase.LoadAssetAtPath($"Assets/Prefabs/Contents/{_geometry.objectReferenceValue.name}/{key}.prefab", typeof(GameObject));
+                    var assetPath = $"Assets/Prefabs/Contents/{_geometry.objectReferenceValue.name}/{key}.prefab";
+                    var asset = AssetDatabase.LoadAssetAtPath(assetPath, typeof(GameObject));
                     _contents.arraySize++;
                     var element = _contents.GetArrayElementAtIndex(_contents.arraySize - 1);
                     var elementKey = element.FindPropertyRelative("key");
                     var elementPrefab = element.FindPropertyRelative("contentPrefab");
                     elementKey.stringValue = key;
+                    if (asset is null && _prefabToClone is { })
+                    {
+                        var prefabPath = AssetDatabase.GetAssetPath(_prefabToClone);
+                        AssetDatabase.CopyAsset(prefabPath, assetPath);
+                        asset = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);
+                    }
                     elementPrefab.objectReferenceValue = asset;
                 }
                 break;

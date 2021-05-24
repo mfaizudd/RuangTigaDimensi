@@ -31,9 +31,9 @@ MonoBehaviour:
   - key: A-AB
     contentPrefab: {fileID: 8346148107146906995, guid: fef825a3ecf9bdd06887aaa3ccd9135c, type: 3}
   - key: A-AD
-    contentPrefab: {fileID: 0}
+    contentPrefab: {fileID: 8346148107146906995, guid: 5cb96f944f2717e26b8c5119094df36b, type: 3}
   - key: A-AE
-    contentPrefab: {fileID: 0}
+    contentPrefab: {fileID: 8346148107146906995, guid: 563b2d1a8aabb91779d19ba46218dab0, type: 3}
   - key: A-BC
     contentPrefab: {fileID: 8346148107146906995, guid: f62e19beae389b860bcdaccd310fefe0, type: 3}
   - key: A-BF
