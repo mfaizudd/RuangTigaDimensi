@@ -16,6 +16,8 @@ namespace EnsignBandeng.UI
                 textMesh.text = value;
             }
         }
+
+        public TextMeshProUGUI TextMesh => textMesh;
         
         public string Data
         {

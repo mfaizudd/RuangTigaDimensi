@@ -34,11 +34,15 @@ public class PointText : MonoBehaviour
 
     private void OnVertexClick(bool pressed)
     {
+        vertexToggle.image.color = pressed ? Color.black : Color.white;
+        vertexToggle.TextMesh.color = pressed ? Color.white : Color.black;
         PointClick?.Invoke(this, Type, pressed);
     }
 
     public void ToggleWithoutNotify(bool value)
     {
+        vertexToggle.image.color = value ? Color.black : Color.white;
+        vertexToggle.TextMesh.color = value ? Color.white : Color.black;
         vertexToggle.ToggleWithoutNotify(value);
     }
 
