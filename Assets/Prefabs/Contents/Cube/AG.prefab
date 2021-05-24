@@ -90,6 +90,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linePrefab: {fileID: 8434041866430100995, guid: 238a024e43535802aa5359c8667f180f, type: 3}
-  aVertexName: A
-  bVertexName: G
-  cVertexName: C
+  triangles:
+  - aVertexName: A
+    bVertexName: G
+    cVertexName: C
+  - aVertexName: C
+    bVertexName: A
+    cVertexName: B
