@@ -29,7 +29,7 @@ public class ContentManager : MonoBehaviour
         geometry.ClearSelection();
     }
 
-    private void OnLineDestroyed(bool cleanupOnly)
+    private void OnLineDestroyed(bool cleanupOnly = false)
     {
         foreach (var ui in userInterfaces)
         {
@@ -49,7 +49,11 @@ public class ContentManager : MonoBehaviour
         var sortedPoints = points.Select(p => p.Name).OrderBy(p => p);
         var key = string.Join("-", sortedPoints);
         var content = geometry.Contents.FirstOrDefault(c => c.Key == key);
-        if (content == null || content.ContentPrefab == null) return;
+        if (content == null || content.ContentPrefab == null)
+        {
+            OnLineDestroyed();
+            return;
+        }
         
         foreach (var ui in userInterfaces)
         {
