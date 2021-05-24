@@ -64,6 +64,7 @@ public class ContentManager : MonoBehaviour
             StartCoroutine(OpenContent(0.5f));
 
         _currentStage = Instantiate(content.ContentPrefab, contentContainer.position, Quaternion.identity);
+        _currentStage.transform.SetParent(contentContainer);
         _currentStage.Inject(geometry);
     }
 
