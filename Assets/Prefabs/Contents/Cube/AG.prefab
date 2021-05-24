@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8346148107146906995}
   - component: {fileID: -2929326389913950483}
   - component: {fileID: -5232435666103795488}
+  - component: {fileID: 4504883053992149485}
   m_Layer: 5
   m_Name: AG
   m_TagString: Untagged
@@ -62,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e7a06f4fa5944098d71ead6b42081e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotation: {x: 338.9167, y: 49.014343, z: 337.50922}
+  rotation: {x: 348.7208, y: 46.368412, z: 348.40662}
 --- !u!114 &-5232435666103795488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,3 +77,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOn: 1
+--- !u!114 &4504883053992149485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2458651916124592499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e7b9cf08950411facc946e9bb0db585, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 899f3f433fdd6f5d793c404e2c282bdc, type: 2}
+  aVertexName: A
+  bVertexName: G
+  cVertexName: C
