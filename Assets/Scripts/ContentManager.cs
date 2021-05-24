@@ -66,14 +66,14 @@ public class ContentManager : MonoBehaviour
     private IEnumerator OpenContent(float transitionTime)
     {
         var rect = mainCamera.rect;
-        StartCoroutine(TweenUtil.AnimateFloat(rect.width, 0.3f, transitionTime, v =>
+        StartCoroutine(TweenUtil.AnimateFloat(rect.width, 0.5f, transitionTime, v =>
         {
             rect.width = v;
             mainCamera.rect = rect;
         }));
         var transposer = mainVirtualCamera.GetCinemachineComponent<CinemachineTransposer>();
         var startOffset = transposer.m_FollowOffset;
-        var endOffset = startOffset + Vector3.back * 5;
+        var endOffset = startOffset + Vector3.back * 3;
         yield return StartCoroutine(TweenUtil.AnimateVector(startOffset, endOffset, transitionTime, v => transposer.m_FollowOffset = v));
         contentCamera.gameObject.SetActive(true);
         contentContainer.gameObject.SetActive(true);
@@ -82,8 +82,8 @@ public class ContentManager : MonoBehaviour
 
     private IEnumerator CloseContent(float transitionTime)
     {
-        contentCamera.gameObject.SetActive(false);
         contentContainer.gameObject.SetActive(false);
+        contentCamera.gameObject.SetActive(false);
         var rect = mainCamera.rect;
         StartCoroutine(TweenUtil.AnimateFloat(rect.width, 1f, transitionTime, v =>
         {
@@ -92,7 +92,7 @@ public class ContentManager : MonoBehaviour
         }));
         var transposer = mainVirtualCamera.GetCinemachineComponent<CinemachineTransposer>();
         var startOffset = transposer.m_FollowOffset;
-        var endOffset = startOffset + Vector3.forward * 5;
+        var endOffset = startOffset + Vector3.forward * 3;
         yield return StartCoroutine(TweenUtil.AnimateVector(startOffset, endOffset, transitionTime, v => transposer.m_FollowOffset = v));
         _zoomedIn = true;
     }
