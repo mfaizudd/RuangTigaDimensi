@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class SpawnRightTriangleGeometryAction : GeometryAction
 {
-    [SerializeField] private Material material;
+    [SerializeField] private Line linePrefab;
     [Header("Vertices")]
     [SerializeField]  private string aVertexName;
     [SerializeField]  private string bVertexName;
     [SerializeField]  private string cVertexName;
 
-    private LineRenderer _lineRenderer;
-    private Transform[] _vertices;
+    private GameObject _triangle;
     private Transform _aVertex;
     private Transform _bVertex;
     private Transform _cVertex;
@@ -30,32 +29,34 @@ public class SpawnRightTriangleGeometryAction : GeometryAction
         if (_aVertex is null || _bVertex is null || _cVertex is null)
             return;
 
-        _vertices = new[] {_cVertex, _aVertex, _bVertex, _cVertex};
-        var instance = new GameObject();
-        _lineRenderer = instance.AddComponent<LineRenderer>();
-        _lineRenderer.positionCount = 7;
-        _lineRenderer.material = material;
-        _lineRenderer.startWidth = 0.1f;
-        _lineRenderer.endWidth = 0.1f;
-        _lineRenderer.SetPositions(_vertices.Select(x => x.position).ToArray());
-    }
-
-    private void Update()
-    {
-        if (_lineRenderer is null || _lineRenderer.positionCount <= 0) return;
+        _triangle = new GameObject("Triangle");
+        _triangle.transform.SetParent(geometry.transform);
+        var aPosition = _aVertex.transform.position;
+        var bPosition = _bVertex.transform.position;
+        var cPosition = _cVertex.transform.position;
         
-        _lineRenderer.SetPositions(_vertices.Select(x=>x.position).ToArray());
-        var positionCount = _lineRenderer.positionCount;
-        var cPosition = _cVertex.position;
-        var aDirection = (_aVertex.position - cPosition).normalized;
-        var bDirection = (_bVertex.position - cPosition).normalized;
-        _lineRenderer.SetPosition(positionCount - 3, cPosition + aDirection);
-        _lineRenderer.SetPosition(positionCount - 2, cPosition + aDirection + bDirection);
-        _lineRenderer.SetPosition(positionCount - 1, cPosition + bDirection);
+        var lineB = Instantiate(linePrefab, _triangle.transform);
+        lineB.LocalPointA = cPosition + cPosition.normalized * 0.1f;
+        lineB.LocalPointB = aPosition + aPosition.normalized * 0.1f;
+        
+        var lineA = Instantiate(linePrefab, _triangle.transform);
+        lineA.LocalPointA = cPosition + cPosition.normalized * 0.1f;
+        lineA.LocalPointB = bPosition + bPosition.normalized * 0.1f;
+
+        var aDirection = (lineA.LocalPointB - lineA.LocalPointA).normalized;
+        var bDirection = (lineB.LocalPointB - lineB.LocalPointA).normalized;
+        
+        var lineSquareA = Instantiate(linePrefab, _triangle.transform);
+        lineSquareA.LocalPointA = lineA.LocalPointA + aDirection;
+        lineSquareA.LocalPointB = lineSquareA.LocalPointA + bDirection;
+        
+        var lineSquareB = Instantiate(linePrefab, _triangle.transform);
+        lineSquareB.LocalPointA = lineSquareA.LocalPointB;
+        lineSquareB.LocalPointB = lineSquareB.LocalPointA + -aDirection;
     }
 
     public override void Cleanup()
     {
-        Destroy(_lineRenderer.gameObject);
+        Destroy(_triangle.gameObject);
     }
 }

@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5560485288067704476}
   - component: {fileID: 8346148107146906995}
-  - component: {fileID: 8077248379190648277}
-  - component: {fileID: 9126699093825036570}
+  - component: {fileID: -2929326389913950483}
   m_Layer: 5
-  m_Name: AF
+  m_Name: AE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83184d16e79517a529dc53b40b500fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8077248379190648277
+--- !u!114 &-2929326389913950483
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,23 +58,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2458651916124592499}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c63e0b04d254404a9859364eda90676a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e7a06f4fa5944098d71ead6b42081e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0, z: -1}
---- !u!114 &9126699093825036570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2458651916124592499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e7b9cf08950411facc946e9bb0db585, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  linePrefab: {fileID: 8434041866430100995, guid: 238a024e43535802aa5359c8667f180f, type: 3}
-  aVertexName: A
-  bVertexName: F
-  cVertexName: B
+  rotation: {x: 0, y: 0, z: 0}

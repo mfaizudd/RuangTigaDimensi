@@ -60,7 +60,6 @@ public class ContentManager : MonoBehaviour
         if (content == null || content.ContentPrefab == null) return;
 
         _currentStage = Instantiate(content.ContentPrefab, contentContainer.position, Quaternion.identity);
-        _currentStage.transform.SetParent(contentContainer);
         _currentStage.Inject(geometry);
     }
 
