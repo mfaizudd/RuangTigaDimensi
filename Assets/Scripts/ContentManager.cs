@@ -46,6 +46,11 @@ public class ContentManager : MonoBehaviour
 
     private void OnLineCreated(Vector3[] linePoints, GeometryPoint[] points)
     {
+        var sortedPoints = points.Select(p => p.Name).OrderBy(p => p);
+        var key = string.Join("-", sortedPoints);
+        var content = geometry.Contents.FirstOrDefault(c => c.Key == key);
+        if (content == null || content.ContentPrefab == null) return;
+        
         foreach (var ui in userInterfaces)
         {
             ui.SetActive(false);
@@ -53,11 +58,6 @@ public class ContentManager : MonoBehaviour
 
         if (_zoomedIn)
             StartCoroutine(OpenContent(0.5f));
-
-        var sortedPoints = points.Select(p => p.Name).OrderBy(p => p);
-        var key = string.Join("-", sortedPoints);
-        var content = geometry.Contents.FirstOrDefault(c => c.Key == key);
-        if (content == null || content.ContentPrefab == null) return;
 
         _currentStage = Instantiate(content.ContentPrefab, contentContainer.position, Quaternion.identity);
         _currentStage.Inject(geometry);
