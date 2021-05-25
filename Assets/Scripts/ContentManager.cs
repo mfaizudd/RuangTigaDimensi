@@ -13,6 +13,7 @@ public class ContentManager : MonoBehaviour
     [SerializeField] private Camera contentCamera;
     [SerializeField] private Transform contentContainer;
     [SerializeField] private Button closeButton;
+    [SerializeField] private GeometryDimensionMenu dimensionMenu;
 
     private bool _zoomedIn = true;
     private ContentStage _currentStage;
@@ -78,10 +79,12 @@ public class ContentManager : MonoBehaviour
         }));
         var transposer = mainVirtualCamera.GetCinemachineComponent<CinemachineTransposer>();
         var startOffset = transposer.m_FollowOffset;
-        var endOffset = startOffset + Vector3.back * 3;
+        var endOffset = startOffset + Vector3.back * 3 + Vector3.up * 2;
         yield return StartCoroutine(TweenUtil.AnimateVector(startOffset, endOffset, transitionTime, v => transposer.m_FollowOffset = v));
         contentCamera.gameObject.SetActive(true);
         contentContainer.gameObject.SetActive(true);
+        dimensionMenu.gameObject.SetActive(true);
+        dimensionMenu.LoadInputValues();
         _zoomedIn = false;
     }
 
@@ -89,6 +92,7 @@ public class ContentManager : MonoBehaviour
     {
         contentContainer.gameObject.SetActive(false);
         contentCamera.gameObject.SetActive(false);
+        dimensionMenu.gameObject.SetActive(false);
         var rect = mainCamera.rect;
         StartCoroutine(TweenUtil.AnimateFloat(rect.width, 1f, transitionTime, v =>
         {
@@ -97,7 +101,7 @@ public class ContentManager : MonoBehaviour
         }));
         var transposer = mainVirtualCamera.GetCinemachineComponent<CinemachineTransposer>();
         var startOffset = transposer.m_FollowOffset;
-        var endOffset = startOffset + Vector3.forward * 3;
+        var endOffset = startOffset + Vector3.forward * 3 + Vector3.down * 2;
         yield return StartCoroutine(TweenUtil.AnimateVector(startOffset, endOffset, transitionTime, v => transposer.m_FollowOffset = v));
         _zoomedIn = true;
     }

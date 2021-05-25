@@ -15,7 +15,11 @@ public class Geometry : MonoBehaviour
     public delegate void OnLineDestroyed(bool cleanupOnly = false);
     public event OnLineDestroyed LineDestroyed;
     #endregion
-    
+
+    public double Length { get; protected set; } = 1;
+    public double Width { get; protected set; } = 1;
+    public double Height { get; protected set; } = 1;
+    public double Volume => Length * Width * Height;
     public ContentCollection Contents => contents;
     public IEnumerable<Transform> Points => vertices.Concat(edges).Concat(faces);
     public IReadOnlyList<Transform> Vertices => vertices;
@@ -162,5 +166,20 @@ public class Geometry : MonoBehaviour
     {
         yield return StartCoroutine(TweenUtil.AnimateQuaternion(transform.rotation, target, 0.5f,
             r => transform.rotation = r));
+    }
+
+    public virtual void SetWidth(double width)
+    {
+        Width = width;
+    }
+
+    public virtual void SetHeight(double height)
+    {
+        Height = height;
+    }
+
+    public virtual void SetLength(double length)
+    {
+        Length = length;
     }
 }

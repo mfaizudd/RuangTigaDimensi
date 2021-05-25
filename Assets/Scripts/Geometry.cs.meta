@@ -1,3 +1,16 @@
-﻿fileFormatVersion: 2
+fileFormatVersion: 2
 guid: d47dd62b2d1046ea984c100f70e1478d
-timeCreated: 1618912178
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - model: {instanceID: 0}
+  - modelFrame: {instanceID: 0}
+  - pointTextPrefab: {fileID: 8691619679473585590, guid: 8f78b9c3e7b1e766589b05ddfa5bc8ac, type: 3}
+  - worldCanvas: {fileID: 8707392861400430567, guid: 4634ab6c3eb0bd48c87ffc9ae90ee9ed, type: 3}
+  - contents: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
