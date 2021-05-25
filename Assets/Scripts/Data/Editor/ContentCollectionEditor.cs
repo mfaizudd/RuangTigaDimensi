@@ -34,8 +34,8 @@ namespace Data.Editor
             if (!(_geometry.objectReferenceValue is Geometry geometry)) return;
             _contents.arraySize = 0;
             GeneratePoint(geometry.Vertices);
-            GeneratePoint(geometry.Vertices, geometry.Edges);
-            GeneratePoint(geometry.Vertices, geometry.Faces);
+            // GeneratePoint(geometry.Vertices, geometry.Edges);
+            // GeneratePoint(geometry.Vertices, geometry.Faces);
         }
 
         private void GeneratePoint(IReadOnlyList<Transform> points)

@@ -6,7 +6,9 @@ public class DisplayLineLength : GeometryAction
 {
     [SerializeField] private LengthType type;
     [SerializeField] private float scale = 1;
-    
+    [SerializeField] private string unit = "cm";
+    private TextMeshProUGUI _textMesh;
+
     public override void Invoke(Geometry geometry)
     {
         var length = type switch
@@ -16,10 +18,18 @@ public class DisplayLineLength : GeometryAction
             LengthType.Height => geometry.Height,
             _ => throw new ArgumentOutOfRangeException()
         };
+        geometry.OnLengthChanged += OnLengthChanged;
+        geometry.OnWidthChanged += OnLengthChanged;
+        geometry.OnHeightChanged += OnLengthChanged;
         length *= scale;
 
-        var textMesh = GetComponentInChildren<TextMeshProUGUI>();
-        textMesh.text = $"Panjang garis: {length}";
+        _textMesh = GetComponentInChildren<TextMeshProUGUI>();
+        OnLengthChanged(length);
+    }
+
+    private void OnLengthChanged(double length)
+    {
+        _textMesh.text = $"Panjang garis: {length} {unit}";
     }
 
     private enum LengthType

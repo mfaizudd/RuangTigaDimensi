@@ -14,6 +14,10 @@ public class Geometry : MonoBehaviour
 
     public delegate void OnLineDestroyed(bool cleanupOnly = false);
     public event OnLineDestroyed LineDestroyed;
+
+    public event Action<double> OnLengthChanged;
+    public event Action<double> OnWidthChanged;
+    public event Action<double> OnHeightChanged;
     #endregion
 
     public double Length { get; protected set; } = 1;
@@ -171,15 +175,18 @@ public class Geometry : MonoBehaviour
     public virtual void SetWidth(double width)
     {
         Width = width;
+        OnWidthChanged?.Invoke(width);
     }
 
     public virtual void SetHeight(double height)
     {
         Height = height;
+        OnHeightChanged?.Invoke(height);
     }
 
     public virtual void SetLength(double length)
     {
         Length = length;
+        OnLengthChanged?.Invoke(length);
     }
 }

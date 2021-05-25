@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8346148107146906995}
   - component: {fileID: 2012525989850189675}
   - component: {fileID: 4152747445357113818}
+  - component: {fileID: -3901884316194797888}
   m_Layer: 5
   m_Name: AC
   m_TagString: Untagged
@@ -81,6 +82,32 @@ MonoBehaviour:
   - aVertexName: A
     bVertexName: C
     cVertexName: D
+--- !u!114 &-3901884316194797888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2458651916124592499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &2671001893276166911
 GameObject:
   m_ObjectHideFlags: 0

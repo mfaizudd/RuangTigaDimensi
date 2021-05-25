@@ -16,9 +16,9 @@ public class Cube : Geometry
     /// <param name="length"></param>
     public override void SetLength(double length)
     {
-        base.SetLength(length);
         Width = length;
         Height = length;
+        base.SetLength(length);
     }
 
     /// <summary>
@@ -27,9 +27,9 @@ public class Cube : Geometry
     /// <param name="height"></param>
     public override void SetHeight(double height)
     {
-        base.SetHeight(height);
         Length = height;
         Width = height;
+        base.SetHeight(height);
     }
     
     /// <summary>
@@ -38,8 +38,8 @@ public class Cube : Geometry
     /// <param name="width"></param>
     public override void SetWidth(double width)
     {
-        base.SetWidth(width);
         Length = width;
         Height = width;
+        base.SetWidth(width);
     }
 }

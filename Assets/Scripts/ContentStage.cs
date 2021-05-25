@@ -45,6 +45,7 @@ public class ContentStage : MonoBehaviour
 
     public void Inject(Geometry geometry)
     {
+        transform.SetAsFirstSibling();
         foreach (var action in _actions)
         {
             action.Invoke(geometry);
