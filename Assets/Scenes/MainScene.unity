@@ -1360,7 +1360,7 @@ MonoBehaviour:
   resetRotationButton: {fileID: 28796089}
   visibilityGroup: {fileID: 649053263}
   mainCamera: {fileID: 1308954960}
-  geometry: {fileID: 0}
+  geometry: {fileID: 1297193218}
   exitButton: {fileID: 1737141722}
   exitMenu: {fileID: 1913501919}
 --- !u!1001 &804957560
